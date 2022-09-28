@@ -11,8 +11,8 @@
 
 <body>
     <div class="container px-5 my-5">
-        <form id="contactForm" data-sb-form-api-token="API_TOKEN" enctype="multipart/form-data">
-            <div class="mb-3" method="GET">
+        <form id="contactForm" data-sb-form-api-token="API_TOKEN" enctype="multipart/form-data" method="POST">
+            <div class="mb-3">
                 <label class="form-label" for="namaPegawai">Nama Pegawai</label>
                 <input class="form-control" id="namaPegawai" type="text" placeholder="Nama Pegawai" data-sb-validations="required" name="namaPegawai" />
                 <div class="invalid-feedback" data-sb-feedback="namaPegawai:required">Nama Pegawai is required.</div>
@@ -73,20 +73,17 @@
             <div class="d-grid">
                 <button class="btn btn-primary btn-lg" id="submitButton" type="submit" name="proses">Kirim</button>
             </div>
-            <br>
         </form>
         <?php
-        //menangkap request
 
+        if (isset($_POST['tombol']) || isset($_POST['namapegawai']) || isset($_POST['agama']) || isset($_POST['jabatan']) || isset($_POST['status']) || isset($_POST['jumlahAnak'])) {
 
-        if (isset($_GET['tombol']) || isset($_GET['namapegawai']) || isset($_GET['agama']) || isset($_GET['jabatan']) || isset($_GET['status']) || isset($_GET['jumlahAnak'])) {
-
-            $nama = $_GET['namaPegawai'];
-            $agama = ($_GET['agama']);
-            $jabatan = ($_GET['jabatan']);
-            $status = ($_GET['status']);
-            $jumlahAnak = ($_GET['jumlahAnak']);
-            $tombol = ($_GET['proses']);
+            $nama = $_POST['namaPegawai'];
+            $agama = $_POST['agama'];
+            $jabatan = $_POST['jabatan'];
+            $status = $_POST['status'];
+            $jumlahAnak = $_POST['jumlahAnak'];
+            $tombol = $_POST['proses'];
             $gp = 0;
 
             switch ($jabatan) {
@@ -119,24 +116,54 @@
             $zaprof = ($agama == 'Islam' && $gk > 6000000) ?  (0.025 * $gk) : 0;
             $thp = $gk - $zaprof;
         ?>
-            <div class="card" style="width: 100%;">
-                <div class="body">
-                    <div class=" alert alert-primary p-5" role="alert">
-                        Nama Pegawai: <?= $nama ?>
-                        <br />Agama: <?= $agama ?>
-                        <br />Jabatan: <?= $jabatan ?>
-                        <br />Status: <?= $status ?>
-                        <br />Jumlah Anak: <?= $jumlahAnak ?>
-                        <br />Gaji Pokok: <?= number_format($gp, 2, ',', '.'); ?>
-                        <br />Tunjangan Jabatan: <?= number_format($tJabatan, 2, ',', '.'); ?>
-                        <br />Tunjangan Keluarga: <?= number_format($tKeluarga, 2, ',', '.'); ?>
-                        <br />Gaji Kotor: <?= number_format($gk, 2, ',', '.'); ?>
-                        <br />Zakat Profesi: <?= number_format($zaprof, 2, ',', '.'); ?>
-                        <br />Take Home Pay: <?= number_format($thp, 2, ',', '.'); ?>
-
-                    </div>
-                </div>
-            </div>
+        
+              
+                    <table class="table mt-5">
+                        <tr class="table-info">
+                            <td>Nama Pegawai</td>
+                            <td><?= $nama ?></td>
+                        </tr>
+                        <tr class="table-secondary">
+                            <td>Agama</td>
+                            <td><?= $agama ?></td>
+                        </tr>
+                        <tr tr class="table-info">
+                            <td>Jabatan</td>
+                            <td><?= $jabatan ?></td>
+                        </tr>
+                        <tr class="table-secondary">
+                            <td>Status</td>
+                            <td><?= $status ?></td>
+                        </tr>
+                        <tr tr class="table-info">
+                            <td>Jumlah Anak</td>
+                            <td><?= $jumlahAnak ?></td>
+                        </tr>
+                        <tr class="table-secondary">
+                            <td>Gaji Pokok</td>
+                            <td><?= number_format($gp, 2, ',', '.'); ?></td>
+                        </tr>
+                        <tr tr class="table-info">
+                            <td>Tunjangan Jabatan</td>
+                            <td><?= number_format($tJabatan, 2, ',', '.'); ?></td>
+                        </tr>
+                        <tr class="table-secondary">
+                            <td>Tunjangan Keluarga</td>
+                            <td><?= number_format($tKeluarga, 2, ',', '.'); ?></td>
+                        </tr>
+                        <tr tr class="table-info">
+                            <td>Gaji Kotor</td>
+                            <td><?= number_format($gk, 2, ',', '.'); ?></td>
+                        </tr>
+                        <tr class="table-secondary">
+                            <td>Zakat Profesi</td>
+                            <td><?= number_format($zaprof, 2, ',', '.'); ?></td>
+                        </tr>
+                        <tr class="table-info">
+                            <td>Take Home Pay</td>
+                            <td> <?= number_format($thp, 2, ',', '.'); ?></td>
+                        </tr>
+                    </table>
         <?php }
         ?>
     </div>
