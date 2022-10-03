@@ -62,7 +62,6 @@ $judul = ['No', 'Nama Bidang', 'Keterangan', 'Luas Bidang', 'Keliling Bidang'];
                 <ul style="list-style:none; padding-left:0px;" >
                     <li>Alas : <?= $segitiga->alas ?></li>
                     <li>Tinggi : <?= $segitiga->tinggi ?></li>
-                    <li>Sisi Kanan dan Kiri : <?= $segitiga->sisi ?></li>
                 </ul>
             </td>
             <td><?= $segitiga->luasBidang() ?></td>
