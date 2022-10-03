@@ -4,7 +4,6 @@ require_once 'Bentuk2D.php';
 class Segitiga extends Bentuk2D{
     public $alas = 10;
     public $tinggi = 12;
-    public $sisi = 13;
 
     public function namaBidang(){
         echo 'Segitiga';
@@ -14,6 +13,7 @@ class Segitiga extends Bentuk2D{
         return (($this->alas * $this->tinggi) / 2);
     }
     public function kelilingBidang(){
-        return (($this->sisi * 2) + $this->alas);
+        $sisi = sqrt(pow(($this->alas/2), 2) + pow(($this->tinggi), 2));
+        return (($sisi * 2) + $this->alas);
     }
 }
